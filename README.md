@@ -1,7 +1,7 @@
 # TimeCard
 微信小程序,倒计日
 ## 项目介绍  
-TimeCard微信小程序是一个基于微信开发工具所编写的一款小程序，它是一个关于效率的小程序，主要提供倒计日和目标日（待完成）的功能。该项目正在持续开发中，目前版本是v0.0.8。（<a href=''>项目地址</a>）  
+TimeCard微信小程序是一个基于微信开发工具所编写的一款小程序，它是一个关于效率的小程序，主要提供倒计日和目标日（待完成）的功能。该项目正在持续开发中，目前版本是v0.0.8。（<a href='https://github.com/pinkpear/TimeCard/'>项目地址</a>）  
 
 ![CircleCI](https://img.shields.io/circleci/project/github/RedSparr0w/node-csgo-parser.svg) &nbsp;&nbsp;&nbsp;
 ![Hex.pm](https://img.shields.io/hexpm/l/plug.svg)      
@@ -69,7 +69,7 @@ TimeCard微信小程序是一个基于微信开发工具所编写的一款小程
 
 ## 捐赠  
 
-如果你喜欢这个项目，欢迎Star、Fork。也欢迎 Pull requests 一起完善这个项目。
+如果你喜欢这个项目，欢迎Star、Fork。也欢迎 Pull requests 一起完善这个项目。  
 ![微信支付](http://p9imm94yt.bkt.clouddn.com/image/paywechatpay.png)
 ![支付宝](http://p9imm94yt.bkt.clouddn.com/image/payAlipay.png)  
 开发不易请作者喝杯饮料吧！
