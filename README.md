@@ -50,7 +50,7 @@ TimeCard微信小程序是一个基于微信开发工具所编写的一款小程
 1. 用于存储用户信息的表（`userinfo表`）  
 ![userinfo表结构](http://p9imm94yt.bkt.clouddn.com/image/TimeCard/userinfo.png)  
 
-2. 用于存储用户所填卡片信息（`timecard表`）
+2. 用于存储用户所填卡片信息（`timecard表`）  
 ![timecard表](http://p9imm94yt.bkt.clouddn.com/image/TimeCard/userinfo.png)
 
 ## 使用方法
