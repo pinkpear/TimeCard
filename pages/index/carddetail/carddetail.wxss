@@ -1,0 +1,108 @@
+/* pages/index/carddetail/carddetail.wxss */
+
+page {
+  height: 100%;
+}
+
+.container {
+  min-height: 100%;
+}
+
+.info {
+  padding: 40rpx 40rpx 0 40rpx;
+  display: flex;
+  flex-direction: column;
+  font-family: "黑体";
+  text-align: center;
+  color: #fff;
+}
+
+.title {
+  font-size: 45rpx;
+  font-weight: bolder;
+}
+
+.surplus {
+  margin-top: 40rpx;
+  font-size: 90rpx;
+  font-weight: bolder;
+}
+
+.surplus-title {
+  font-size: 25rpx;
+  color: #cccccc;
+}
+
+.period {
+  margin-top: 100rpx;
+  width: 300rpx;
+  margin-left: 186rpx;
+}
+
+.compare {
+  font-size: 25rpx;
+  color: #cccccc;
+}
+.start-end{
+  margin-top: 110rpx;
+  font-size: 32rpx;
+}
+.comm {
+  height: 250rpx;
+  width: 560rpx;
+  padding: 10rpx 8rpx;
+  margin-left: 40rpx;
+  margin-top: 40rpx;
+  font-size: 32rpx;
+  line-height: 1.2;
+  border: 1rpx solid #cccccc;
+}
+.remarks-title{
+  font-size: 40rpx;
+  color: #cccccc;
+}
+.remarks-container{
+  text-align: left;
+  margin-top: 40rpx;
+}
+.shareimg{
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  width: 140rpx;
+  height: 140rpx;
+}
+.deleteimg{
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 140rpx;
+  height: 140rpx;
+}
+.canvas{  
+  height: 480rpx;
+  width: 100%;
+}
+
+.save{
+  position: absolute;
+  border-radius: 30rpx;
+  width: 185rpx;
+  height: 65rpx;
+  font-size: 28rpx;
+  text-align: center;
+  line-height: 65rpx;
+  top: 700rpx;
+  right: 85rpx;
+}
+.back{
+  position: absolute;
+  border-radius: 30rpx;
+  width: 185rpx;
+  height: 65rpx;
+  font-size: 28rpx;
+  text-align: center;
+  line-height: 65rpx;
+   top: 700rpx;
+  left: 100rpx;
+}

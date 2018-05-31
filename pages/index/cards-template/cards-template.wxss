@@ -1,0 +1,66 @@
+.preview{
+  display: flex;
+  flex-direction: column;
+  margin-top: 30rpx;
+}
+.card{
+  margin-top: 15rpx;
+  height: 230rpx;
+  border-radius: 25rpx;
+  padding: 25rpx;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.title-container{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.title{
+  font-size: 50rpx;
+  /* font-weight: bolder; */
+}
+.lable{
+  background-color: #AAA;
+  font-size: 28rpx;
+  color: #fff;
+  width: 100rpx;
+  text-align: center;
+  border-radius: 5rpx;
+}
+.period{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  font-size: 25rpx;
+  color: #DDD;
+}
+.progress-days{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  height: 60rpx;
+}
+.progress{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  font-size: 30rpx;
+  color: #DDD;
+}
+.days{
+  font-size: 70rpx;
+  font-weight: bolder;
+  line-height: 60rpx;
+}
+.detail{
+  border: 2rpx solid #fff;
+  border-radius: 30rpx;
+  width: 120rpx;
+  height: 50rpx;
+  font-size: 28rpx;
+  text-align: center;
+  line-height: 50rpx;
+}

@@ -1,0 +1,8 @@
+{
+  "pages": [
+    "pages/register/register",
+    "pages/index/index",
+    "pages/index/carddetail/carddetail",
+    "pages/create/create"
+  ]
+}

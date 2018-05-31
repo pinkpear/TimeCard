@@ -1,0 +1,15 @@
+<import src="cards-template/cards-template.wxml" />
+<view class='container'>
+  <image class='add-timecard-icon' src='/images/icon/add_timecard.png' mode='aspectFit' catchtap='creatCard'></image>
+  <view class='tip' hidden='{{mycards.length > 0}}'>
+    <text class='tip-name'>暂无时间卡片，快去添加吧</text>
+    <text class='tip-nameEn'>There's no more time-cards</text>
+  </view>
+  <view class='cards-container'>
+    <block wx:for="{{mycards}}" wx:for-item="cards">
+      <view class='single-card'>
+        <template is="cardstemplate" data="{{...cards}}" />
+      </view>
+    </block>
+  </view>
+</view>

@@ -1,0 +1,34 @@
+@import "cards-template/cards-template.wxss";
+page{
+  background-color: #FBFBFB;
+}
+.cards-container{
+  margin: 100rpx 40rpx 0 40rpx;
+  padding-bottom: 40rpx;
+}
+.single-card{
+  margin-top: 40rpx;
+}
+.add-timecard-icon{
+  position: absolute;
+  width: 66rpx;
+  height: 66rpx;
+  top: 25rpx;
+  right: 35rpx;
+}
+.tip{
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  margin-top: 450rpx;
+}
+.tip-name{
+  /* font-weight: bolder; */
+  font-family: "黑体";
+  font-size: 58rpx;
+  color: #999;
+}
+.tip-nameEn{
+  margin-top: 20rpx;
+  color: #CCC;
+}
