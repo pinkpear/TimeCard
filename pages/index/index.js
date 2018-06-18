@@ -1,3 +1,4 @@
+var app = getApp();
 var convertDate = require('../../utils/convertDate.js');
 Page({
 
@@ -5,7 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    timecardtableID: 34873,
+    timecardtableID: app.data.timecardtableID,
     nowdate: "2018-04-30"
   },
 

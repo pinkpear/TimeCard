@@ -52,7 +52,13 @@ page {
   background-color: #fff;
   font-size: 45rpx;
   height: 240rpx;
-  line-height: 120rpx;
+  
+  
+}
+.AD{
+  text-align: center;
+  width: 100%;
+  margin: auto 0;
 }
 
 .comm {

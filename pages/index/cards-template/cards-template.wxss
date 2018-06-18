@@ -63,4 +63,5 @@
   font-size: 28rpx;
   text-align: center;
   line-height: 50rpx;
+  margin-top: 8rpx;
 }

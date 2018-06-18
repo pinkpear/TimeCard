@@ -30,7 +30,8 @@
     </view>
     <!--备注  -->
     <view class='section-comm'>
-      <textarea class='comm' placeholder='备注' name="textarea"></textarea>
+      <!-- <textarea class='comm' placeholder='备注' name="textarea"></textarea> -->
+      <text class='AD'>{{ADshow}}</text>
     </view>
     <!--颜色选择  -->
     <view class='color-pick'>

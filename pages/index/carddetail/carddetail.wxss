@@ -65,6 +65,20 @@ page {
   text-align: left;
   margin-top: 40rpx;
 }
+.section-comm {
+  margin-top: 40rpx;
+  display: flex;
+  flex-direction: row;
+  background-color: #fff;
+   font-size: 45rpx; 
+  height: 240rpx;
+}
+.AD{
+  text-align: center;
+  width: 100%;
+  color: black;
+  margin: auto 0;
+}
 .shareimg{
   position: fixed;
   right: 0;

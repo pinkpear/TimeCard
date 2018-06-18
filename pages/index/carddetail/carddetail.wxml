@@ -10,9 +10,10 @@
       <text class='compare'>{{"已过：" + timecard.completed + '/' + timecard.scope}}</text>
     </view>
     <text class='start-end'>{{"起始日：" + timecard.startdate + " " + "目标日：" + timecard.enddate}}</text>
-    <view class='remarks-container'>
-      <text class='remarks-title'>备注：</text>
-      <textarea class='comm' value='{{timecard.remarks}}' disabled='true' name="textarea"></textarea>
+    <view class='section-comm'>
+      <!-- <text class='remarks-title'>备注：</text>
+      <textarea class='comm' value='{{timecard.remarks}}' disabled='true' name="textarea"></textarea> -->
+    <text class='AD'>{{ADshow}}</text>
     </view>
     <image class='deleteimg' src='/images/icon/delete.png' mode='aspectFit' catchtap='ondelete'></image>
     <image class='shareimg' src='/images/icon/share.png' mode='aspectFit' catchtap='onshare'></image>

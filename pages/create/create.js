@@ -1,5 +1,6 @@
 // pages/creat/creat.js
 // 获得工具utils工具js里面函数,先模块化引用utils里面的js地址  reqiure('js地址')成一个面向对象
+var app = getApp();
 var convertDate = require('../../utils/convertDate.js');
 Page({
 
@@ -15,7 +16,9 @@ Page({
     days: 0,
     complete: 0,
     percent: 0,
-    timecardtableID: 34873
+    timecardtableID: app.data.timecardtableID,
+    ADtableID: app.data.ADtableID,
+    ADshow: ""
   },
 
   /**
@@ -37,7 +40,8 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    var that = this;
+    that.getAD();
   },
 
   /**
@@ -156,6 +160,22 @@ Page({
     var date2 = new Date(d2);
     var days = Math.ceil((date2 - date1) / (24 * 60 * 60 * 1000));
     return days;
+  },
+  // 获取广告
+  getAD:function(){
+    var that = this;
+    var query1 = new wx.BaaS.Query();
+    query1.compare('flag', '=', 1);
+    var Product = new wx.BaaS.TableObject(that.data.ADtableID);
+    Product.setQuery(query1).find().then(res => {
+      // success
+      // console.log(res)
+      that.setData({
+        ADshow: res.data.objects[0].content
+      })
+    }, err => {
+      // err
+    })
   },
   // 改变颜色
   changecolor: function(e){

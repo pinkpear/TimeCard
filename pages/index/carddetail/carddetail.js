@@ -1,4 +1,5 @@
 // pages/index/carddetail/carddetail.js
+var app = getApp();
 var convertDate = require('../../../utils/convertDate.js');
 Page({
 
@@ -7,11 +8,13 @@ Page({
    */
   data: {
     cardid: "",
-    timecardtableID: 34873,
+    timecardtableID: app.data.timecardtableID,
     nowdate: "2018-04-30",
     timecard: {},
     shareImgSrc: "",
-    hishare: true
+    hishare: true,
+    ADtableID: app.data.ADtableID,
+    ADshow: ""
   },
 
   /**
@@ -37,7 +40,8 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    var that = this;
+    that.getAD();
   },
 
   /**
@@ -147,6 +151,22 @@ Page({
     var days = Math.ceil((date2 - date1) / (24 * 60 * 60 * 1000));
     return days;
   },
+  // 获取广告
+  getAD: function () {
+    var that = this;
+    var query1 = new wx.BaaS.Query();
+    query1.compare('flag', '=', 1);
+    var Product = new wx.BaaS.TableObject(that.data.ADtableID);
+    Product.setQuery(query1).find().then(res => {
+      // success
+      // console.log(res)
+      that.setData({
+        ADshow: res.data.objects[0].content
+      })
+    }, err => {
+      // err
+    })
+  },
   ondelete:function(){
     var that = this;
     wx.showModal({
@@ -154,10 +174,13 @@ Page({
       content: '是否删除？',
       cancelColor:  '#ee3f4d',
       success: function (res) {
+        // 对数据进行软删除
         if (res.confirm) {
           // console.log('用户点击确定')
           let MyTableObject = new wx.BaaS.TableObject(that.data.timecardtableID);
-          MyTableObject.delete(that.data.timecard.id).then(res => {
+          let product = MyTableObject.getWithoutData(that.data.timecard.id);
+          product.set('flag', 1);
+          product.update().then(res => {
             // success
             wx.showToast({
               title: '删除成功',
