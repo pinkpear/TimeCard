@@ -1,7 +1,7 @@
 App({
   data: {
-    timecardtableID: 34873,
-    ADtableID: 40864
+    timecardtableID: timecard表ID,
+    ADtableID: AD表ID
   },
   onLaunch() {
     // 引入 SDK

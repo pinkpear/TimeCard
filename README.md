@@ -54,7 +54,7 @@ TimeCard微信小程序是一个基于微信开发工具所编写的一款小程
 ![timecard表](http://p9imm94yt.bkt.clouddn.com/image/TimeCard/timecard.png)
 
 3. 将备注区替换为广告区来适应腾讯爸爸的审核政策（`AD表`）  
-![timecard表](http://p9imm94yt.bkt.clouddn.com/image/TimeCard/AD.png)
+![AD表](http://p9imm94yt.bkt.clouddn.com/image/TimeCard/AD.png)
 
 ## 使用方法
 > 开发工具：`微信web开发者工具`（<a href='https://mp.weixin.qq.com/cgi-bin/wx'>下载与注册地址</a>）  
