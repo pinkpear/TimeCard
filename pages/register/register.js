@@ -5,7 +5,11 @@ Page({
    * 页面的初始数据
    */
   data: {
+<<<<<<< HEAD
     tableID: userinfo表ID
+=======
+    tableID: usertableID
+>>>>>>> origin/master
   },
 
   /**
