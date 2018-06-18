@@ -1,13 +1,13 @@
 App({
   data: {
-    timecardtableID: timecard表ID,
-    ADtableID: 新增广告表ID
+    timecardtableID: 34873,
+    ADtableID: 40864
   },
   onLaunch() {
     // 引入 SDK
     require('./utils/sdk-v1.3.0.js');
     // 初始化 SDK
-    let clientID = '填写知晓云中clientID';
+    let clientID = 'e281bb8d19fbfa131389';
     wx.BaaS.init(clientID);
 
   }
