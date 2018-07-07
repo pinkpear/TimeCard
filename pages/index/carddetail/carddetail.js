@@ -33,7 +33,7 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-  
+
   },
 
   /**
@@ -48,37 +48,37 @@ Page({
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-  
+
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-  
+
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-  
+
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-  
+
   },
 
   /**
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-  
+
   },
-  selectTimecard:function(cardid){
+  selectTimecard: function (cardid) {
     var that = this;
     that.getdate();
     // 实例化查询对象
@@ -94,40 +94,57 @@ Page({
         frontColor: '#ffffff',
         backgroundColor: "#" + result.color,
       })
-      var startdate = result.startdate;
-      var enddate = result.enddate;
-      var surplus = that.getdays(that.data.nowdate, enddate);
-      var scope = that.getdays(startdate, enddate);
-      if (surplus >= 0) {
-        var completed = that.getdays(startdate, that.data.nowdate);
-        var percent = completed / scope * 100;
+      /**
+       * 判断卡片类型
+       */
+      if (result.type == 'countback') {
+        var startdate = result.startdate;
+        var enddate = result.enddate;
+        var surplus = that.getdays(that.data.nowdate, enddate);
+        var scope = that.getdays(startdate, enddate);
+        if (surplus >= 0) {
+          var completed = that.getdays(startdate, that.data.nowdate);
+          var percent = completed / scope * 100;
+        } else {
+          var completed = scope;
+          var percent = 100;
+          surplus = "已结束";
+        }
+
+        var temp = {
+          id: result.id,
+          startdate: startdate,
+          enddate: enddate,
+          title: result.title,
+          color: result.color,
+          scope: scope,
+          completed: completed,
+          percent: percent,
+          surplus: surplus,
+          cardstype: result.type
+        }
       } else {
-        var completed = scope;
-        var percent = 100;
-        surplus = "已结束";
-      }
-      if(!result.remarks){
-        var remarks = "无";
-      }else{
-        var remarks = result.remarks;
-      }
-      var temp = {
-        id: result.id,
-        startdate: startdate,
-        enddate: enddate,
-        remarks: remarks,
-        title: result.title,
-        color: result.color,
-        scope: scope,
-        completed: completed,
-        percent: percent,
-        surplus: surplus
+        // 处理累计日
+        var startdate = result.startdate;
+        var completed = that.getdays(startdate, that.data.nowdate);
+        var temp = {
+          id: result.id,
+          cardstype: result.type,
+          startdate: startdate,
+          title: result.title,
+          color: result.color,
+          completed: completed
+        }
       }
       that.setData({
         timecard: temp
       })
-    },err => {
-
+    }, err => {
+      wx.showToast({
+        title: '获取详细信息失败！',
+        icon: 'none',
+        duration: 1200
+      })
     })
   },
   // 获取当前日期
@@ -167,12 +184,12 @@ Page({
       // err
     })
   },
-  ondelete:function(){
+  ondelete: function () {
     var that = this;
     wx.showModal({
       title: '提示',
       content: '是否删除？',
-      cancelColor:  '#ee3f4d',
+      cancelColor: '#ee3f4d',
       success: function (res) {
         // 对数据进行软删除
         if (res.confirm) {
@@ -201,7 +218,7 @@ Page({
       }
     })
   },
-  onshare:function(){
+  onshare: function () {
     var that = this;
     that.setData({
       hishare: false
@@ -217,17 +234,32 @@ Page({
     ctx.setFillStyle('#ffffff')
     ctx.fillText(that.data.timecard.title, 30, 72)
 
-    ctx.setFontSize(10)
-    ctx.setFillStyle('#CCCCCC')
-    ctx.fillText('剩余天数', 30, 100)
+    if (that.data.timecard.cardstype == 'countback'){
+      ctx.setFontSize(10)
+      ctx.setFillStyle('#CCCCCC')
+      ctx.fillText('剩余天数', 30, 100)
 
-    ctx.setFontSize(40)
-    ctx.setFillStyle('#FFFFFF')
-    ctx.fillText(that.data.timecard.surplus, 30, 145)
+      ctx.setFontSize(40)
+      ctx.setFillStyle('#FFFFFF')
+      ctx.fillText(that.data.timecard.surplus, 30, 145)
 
-    ctx.setFontSize(13)
-    ctx.setFillStyle('#CCCCCC')
-    ctx.fillText("目标日：" + that.data.timecard.enddate, 30, 195)
+      ctx.setFontSize(13)
+      ctx.setFillStyle('#CCCCCC')
+      ctx.fillText("目标日：" + that.data.timecard.enddate, 30, 195)
+    }else{
+      ctx.setFontSize(10)
+      ctx.setFillStyle('#CCCCCC')
+      ctx.fillText('累计天数', 30, 100)
+
+      ctx.setFontSize(40)
+      ctx.setFillStyle('#FFFFFF')
+      ctx.fillText(that.data.timecard.completed, 30, 145)
+
+      ctx.setFontSize(13)
+      ctx.setFillStyle('#CCCCCC')
+      ctx.fillText("起始日：" + that.data.timecard.startdate, 30, 195)
+    }
+    
 
     ctx.draw()
   },
@@ -250,7 +282,7 @@ Page({
     })
 
   },
-  saveimg:function(path){
+  saveimg: function (path) {
     //4. 当用户点击分享到朋友圈时，将图片保存到相册
     var that = this;
     wx.saveImageToPhotosAlbum({
@@ -274,11 +306,11 @@ Page({
       }
     })
   },
-  back:function(){
+  back: function () {
     var that = this;
     that.setData({
       hishare: true
     })
   }
-  
+
 })

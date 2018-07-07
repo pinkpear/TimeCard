@@ -8,6 +8,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    
     startdate: "2018-04-01",
     enddate: "2018-04-01",
     nowdate: "2018-04-01",
@@ -16,16 +17,23 @@ Page({
     days: 0,
     complete: 0,
     percent: 0,
+    cardstype: "",
     timecardtableID: app.data.timecardtableID,
     ADtableID: app.data.ADtableID,
-    ADshow: ""
+    ADshow: "",
+
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.getdate();
+    var that = this;
+    var cardstype = options.cardstype;
+    that.setData({
+      cardstype: cardstype
+    });
+    that.getdate();
 
   },
 
@@ -79,7 +87,7 @@ Page({
 
   },
   // 提醒用户保存
-  alert:function(){
+  alert: function () {
     wx.showToast({
       title: '赶快保存查看吧！',
       icon: 'none',
@@ -89,15 +97,15 @@ Page({
   // 同步显示到下方预览处
   bindKeyInput: function (e) {
     var str = e.detail.value;
-    if (str.length > 0 && str.length <= 10){
+    if (str.length > 0 && str.length <= 10) {
       this.setData({
         title: e.detail.value
       })
-    } else if (str.length == 0){
+    } else if (str.length == 0) {
       this.setData({
         title: "标题"
       })
-    }else{
+    } else {
       this.setData({
         title: str.substring(0, 9) + "..."
       })
@@ -105,10 +113,10 @@ Page({
 
   },
   // 获取当前日期
-  getdate:function(){
+  getdate: function () {
     var that = this;
     var d = new Date();
-    var startdate = convertDate.dateformat("yyyy-MM-dd",d);
+    var startdate = convertDate.dateformat("yyyy-MM-dd", d);
     that.setData({
       startdate: startdate,
       enddate: startdate,
@@ -122,9 +130,9 @@ Page({
     this.setData({
       startdate: e.detail.value
     })
-    var days = that.getdays(that.data.startdate,that.data.nowdate);
+    var days = that.getdays(that.data.startdate, that.data.nowdate);
     var alldays = that.getdays(that.data.startdate, that.data.enddate);
-    var percent = parseInt(days/alldays*100);
+    var percent = parseInt(days / alldays * 100);
     // console.log(percent)
     that.setData({
       complete: days,
@@ -143,14 +151,14 @@ Page({
       days: days
     })
     var completedays = that.getdays(that.data.startdate, d2);
-    var percent = parseInt(completedays/days*100);
+    var percent = parseInt(completedays / days * 100);
     that.setData({
       enddate: e.detail.value,
       percent: percent
     })
   },
   // 两日期相减得到相差天数
-  getdays:function(day1,day2){
+  getdays: function (day1, day2) {
     var that = this;
     var d1 = day1;
     var d2 = day2;
@@ -162,7 +170,7 @@ Page({
     return days;
   },
   // 获取广告
-  getAD:function(){
+  getAD: function () {
     var that = this;
     var query1 = new wx.BaaS.Query();
     query1.compare('flag', '=', 1);
@@ -178,7 +186,7 @@ Page({
     })
   },
   // 改变颜色
-  changecolor: function(e){
+  changecolor: function (e) {
     var that = this;
     var color = e.currentTarget.dataset.color;
     this.setData({
@@ -193,22 +201,21 @@ Page({
     // console.log(that.data.startdate)
     // console.log(that.data.nowdate)
     // console.log(that.data.enddate)
-    var card = that.data
-    // console.log(card)
-    if(that.data.title != "标题"){
+    var card = that.data;
+    if (that.data.title != "标题") {
       // 插入timecard数据库
       let Timecard = new wx.BaaS.TableObject(card.timecardtableID);
       let Timecardinfo = Timecard.create();
       Timecardinfo.set("openid", wx.getStorageSync("ifx_baas_openid"));
       Timecardinfo.set("startdate", card.startdate);
       Timecardinfo.set("enddate", card.enddate);
-      Timecardinfo.set("remarks", e.detail.value.textarea);
       Timecardinfo.set("title", card.title);
       Timecardinfo.set("color", card.color);
       Timecardinfo.set("flag", 0);
+      Timecardinfo.set("type", card.cardstype);
       Timecardinfo.save().then(res => {
         // success
-        if(res.statusCode == 201){
+        if (res.statusCode == 201) {
           wx.showToast({
             title: '保存成功！',
             icon: 'none',
@@ -220,7 +227,11 @@ Page({
         }
       }, err => {
         // err
-        // console.log(err)
+        wx.showToast({
+          title: '保存失败，请稍后重试！',
+          icon: 'none',
+          duration: 1200
+        })
       })
     }
   }

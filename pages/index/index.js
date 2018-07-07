@@ -1,4 +1,5 @@
 var app = getApp();
+var util = require('../../utils/util.js');
 var convertDate = require('../../utils/convertDate.js');
 Page({
 
@@ -7,14 +8,16 @@ Page({
    */
   data: {
     timecardtableID: app.data.timecardtableID,
-    nowdate: "2018-04-30"
+    nowdate: "2018-04-30",
+    hideShopPopup: true,
+    locationTableID: app.data.locationTableID,
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    
   },
 
   /**
@@ -68,12 +71,12 @@ Page({
   },
   // 跳转添加timeCard页面
   creatCard: function () {
-    wx.navigateTo({
-      url: '/pages/create/create',
-    })
+    var that = this;
+    that.bindGuiGeTap();
   },
   // 展示已经存在的卡片
   showCard: function () {
+
     var that = this;
     that.getdate();
     var mycards = [];
@@ -89,32 +92,51 @@ Page({
       // success
       var result = res.data.objects;
       for (var idx in result) {
-        var startdate = result[idx].startdate;
-        var enddate = result[idx].enddate;
-        var surplus = that.getdays(that.data.nowdate, enddate);
-        var scope = that.getdays(startdate, enddate);
-        if (surplus >= 0) {
-          var completed = that.getdays(startdate, that.data.nowdate);
-          var percent = completed/scope*100;
-        } else {
-          var completed = scope;
-          var percent = 100;
-          surplus = "已结束";
-        }
+        /**
+         * 根据类型不同分类型处理
+         */
+        if (result[idx].type == 'countback') {
+          // 处理倒计日
+          var startdate = result[idx].startdate;
+          var enddate = result[idx].enddate;
+          var surplus = that.getdays(that.data.nowdate, enddate);
+          var scope = that.getdays(startdate, enddate);
+          if (surplus >= 0) {
+            var completed = that.getdays(startdate, that.data.nowdate);
+            var percent = completed / scope * 100;
+          } else {
+            var completed = scope;
+            var percent = 100;
+            surplus = "已结束";
+          }
 
-        var temp = {
-          id: result[idx].id,
-          startdate: startdate,
-          enddate: enddate,
-          remarks: result[idx].remarks,
-          title: result[idx].title,
-          color: result[idx].color,
-          scope: scope,
-          completed: completed,
-          percent: percent,
-          surplus: surplus
+          var temp = {
+            id: result[idx].id,
+            cardstype: result[idx].type,
+            startdate: startdate,
+            enddate: enddate,
+            remarks: result[idx].remarks,
+            title: result[idx].title,
+            color: result[idx].color,
+            scope: scope,
+            completed: completed,
+            percent: percent,
+            surplus: surplus
+          }
+        }else{
+          // 处理累计日
+          var startdate = result[idx].startdate;
+          var completed = that.getdays(startdate, that.data.nowdate);
+          var temp = {
+            id: result[idx].id,
+            cardstype: result[idx].type,
+            startdate: startdate,
+            title: result[idx].title,
+            color: result[idx].color,
+            completed: completed
+          }
         }
-        mycards.push(temp)
+        mycards.push(temp);
       }
       that.setData({
         mycards: mycards
@@ -145,9 +167,44 @@ Page({
     return days;
   },
   // 跳转详情页面
-  ondetail: function(e){
+  ondetail: function (e) {
     wx.navigateTo({
-      url: 'carddetail/carddetail?cardid='+e.currentTarget.dataset.cardid,
+      url: 'carddetail/carddetail?cardid=' + e.currentTarget.dataset.cardid,
+    })
+  },
+  /**
+* 种类选择弹出框
+*/
+  bindGuiGeTap: function () {
+    this.setData({
+      hideShopPopup: false
+    });
+    wx.hideTabBar({
+      aniamtion: false
+    });
+  },
+  /**
+ * 种类选择弹出框隐藏
+ */
+  closePopupTap: function () {
+    this.setData({
+      hideShopPopup: true
+    });
+    wx.showTabBar({
+      aniamtion: true
+    });
+  },
+  /*
+    跳转到创建卡片页面
+  */
+  oncreate: function (e) {
+    var that = this;
+    that.closePopupTap();
+    var cardstype = e.target.dataset.type;
+    // console.log(cardstype)
+    wx.navigateTo({
+      url: '/pages/create/create?cardstype=' + cardstype,
     })
   }
+
 })

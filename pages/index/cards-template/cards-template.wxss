@@ -50,6 +50,30 @@
   font-size: 30rpx;
   color: #DDD;
 }
+
+/*累计日  */
+.period-count{
+  font-size: 25rpx;
+  color: #DDD;
+}
+.period-count .countdays{
+  float: right;
+}
+.start-days{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  height: 60rpx;
+}
+.start-date{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  font-size: 30rpx;
+  color: #DDD;
+  line-height: 60rpx;
+}
+
 .days{
   font-size: 70rpx;
   font-weight: bolder;

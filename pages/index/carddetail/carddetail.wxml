@@ -1,6 +1,8 @@
 <!--pages/index/carddetail/carddetail.wxml-->
 <view class='container' style='background-color: #{{timecard.color}};'>
-  <view class='info' hidden='{{!hishare}}'>
+
+  <!--倒计日  -->
+  <view class='info' hidden='{{!hishare}}' wx:if="{{timecard.cardstype == 'countback'}}">
     <text class='title'>{{timecard.title}}</text>
     <text class='surplus'>{{timecard.surplus}}</text>
     <text class='surplus-title'>剩余天数</text>
@@ -13,11 +15,30 @@
     <view class='section-comm'>
       <!-- <text class='remarks-title'>备注：</text>
       <textarea class='comm' value='{{timecard.remarks}}' disabled='true' name="textarea"></textarea> -->
-    <text class='AD'>{{ADshow}}</text>
+      <text class='AD'>{{ADshow}}</text>
     </view>
     <image class='deleteimg' src='/images/icon/delete.png' mode='aspectFit' catchtap='ondelete'></image>
     <image class='shareimg' src='/images/icon/share.png' mode='aspectFit' catchtap='onshare'></image>
   </view>
+
+  <!--累计日  -->
+  <view class='info' hidden='{{!hishare}}' wx:else>
+    <text class='title'>{{timecard.title}}</text>
+    <text class='surplus'>{{timecard.completed}}</text>
+    <text class='surplus-title'>累计天数</text>
+    <text></text>
+
+    <text class='start-end'>{{"起始日：" + timecard.startdate}}</text>
+    <view class='section-comm'>
+      <!-- <text class='remarks-title'>备注：</text>
+      <textarea class='comm' value='{{timecard.remarks}}' disabled='true' name="textarea"></textarea> -->
+      <text class='AD'>{{ADshow}}</text>
+    </view>
+    <image class='deleteimg' src='/images/icon/delete.png' mode='aspectFit' catchtap='ondelete'></image>
+    <image class='shareimg' src='/images/icon/share.png' mode='aspectFit' catchtap='onshare'></image>
+  </view>
+
+  <!--保存图片按钮  -->
   <view class='btn' hidden='{{hishare}}'>
     <canvas canvas-id="myCanvas" class='canvas' />
     <button class='save' catchtap='on'>保存图片</button>

@@ -6,10 +6,31 @@
     <text class='tip-nameEn'>There's no more time-cards</text>
   </view>
   <view class='cards-container'>
+    <view>
+
+    </view>
     <block wx:for="{{mycards}}" wx:for-item="cards">
       <view class='single-card'>
         <template is="cardstemplate" data="{{...cards}}" />
       </view>
     </block>
+  </view>
+
+
+  <view class="show-popup" hidden="{{hideShopPopup}}">
+    <view class="popup-mask" bindtap="closePopupTap"></view>
+    <view class="popup-contents">
+      <view class='popup-cancel'>
+        <text class='txt' catchtap='closePopupTap'>取消</text>
+      </view>
+      <view class='popup-title'>
+        <text>选择创建卡片类型</text>
+      </view>
+      <view class='button-container'>
+      <!--根据类型不同跳转时选择不同类型  -->
+        <image class='button-img' mode='aspectFit' src='/images/button/count.png' catchtap='oncreate' data-type='count'></image>
+        <image class='button-img' mode='aspectFit' src='/images/button/countback.png' catchtap='oncreate' data-type='countback'></image>
+      </view>
+    </view>
   </view>
 </view>

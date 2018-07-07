@@ -1,30 +1,19 @@
 // pages/index/index.js
+var app = getApp();
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    tableID: userinfo表ID
+    usertableID: app.data.usertableID
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    // 实例化查询对象
-    var query = new wx.BaaS.Query();
-    // 设置查询条件（比较、字符串包含、组合等）
-    query.compare('openid', '=', wx.getStorageSync("ifx_baas_openid"));
-    // 应用查询对象
-    var userquery = new wx.BaaS.TableObject(this.data.tableID)
-    userquery.setQuery(query).find().then((res) => {
-      if (res.data.objects.length != 0) {
-        wx.redirectTo({
-          url: '/pages/index/index'
-        })
-      }
-    })
+
   },
 
   /**
@@ -38,7 +27,19 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    // 实例化查询对象
+    var query = new wx.BaaS.Query();
+    // 设置查询条件（比较、字符串包含、组合等）
+    query.compare('openid', '=', wx.getStorageSync("ifx_baas_openid"));
+    // 应用查询对象
+    var userquery = new wx.BaaS.TableObject(this.data.usertableID)
+    userquery.setQuery(query).find().then((res) => {
+      if (res.data.objects.length != 0) {
+        wx.redirectTo({
+          url: '/pages/index/index'
+        })
+      }
+    })
   },
 
   /**
@@ -82,12 +83,9 @@ Page({
     wx.login({
       success: function (res) {
         if (res.code) {
+          // console.log(res);
           //发起网络请求
-          if (that.selectUserinfo()){
-
-          }else{
-            that.getUserInfo()
-          }
+          that.selectUserinfo();
         } else {
           wx.showToast({
             title: '登录失败',
@@ -107,12 +105,15 @@ Page({
       success: function (res) {
         var userInfo = res.userInfo
         that.insertUserinfo(userInfo)
-        var nickName = userInfo.nickName
-        var avatarUrl = userInfo.avatarUrl
-        var gender = userInfo.gender //性别 0：未知、1：男、2：女
-        var province = userInfo.province
-        var city = userInfo.city
-        var country = userInfo.country
+        // var nickName = userInfo.nickName
+        // var avatarUrl = userInfo.avatarUrl
+        // var gender = userInfo.gender //性别 0：未知、1：男、2：女
+        // var province = userInfo.province
+        // var city = userInfo.city
+        // var country = userInfo.country
+        wx.redirectTo({
+          url: '/pages/index/index'
+        })
 
       },
       fail: function (res) {
@@ -126,19 +127,22 @@ Page({
   },
   //  知晓云查询数据
   selectUserinfo: function(){
-        // 实例化查询对象
+    var that = this;
+    // 实例化查询对象
     var query = new wx.BaaS.Query();
     // 设置查询条件（比较、字符串包含、组合等）
     query.compare('openid', '=', wx.getStorageSync("ifx_baas_openid"));
     // 应用查询对象
-    var userquery = new wx.BaaS.TableObject(this.data.tableID)
+    var userquery = new wx.BaaS.TableObject(this.data.usertableID)
     userquery.setQuery(query).find().then((res) => {
-      // console.log(res)
+      console.log(res)
       if (res.data.objects.length != 0) {
         wx.redirectTo({
           url: '/pages/index/index'
         })
         return 1;
+      }else{
+        that.getUserInfo();
       }
       return 0;
     })
@@ -156,7 +160,7 @@ Page({
       var gender = "未知";
     }
 
-    let User = new wx.BaaS.TableObject(that.data.tableID);
+    let User = new wx.BaaS.TableObject(that.data.usertableID);
     let user = User.create();
     user.set("openid", wx.getStorageSync("ifx_baas_openid"));
     user.set("nickName", userInfo.nickName);
@@ -169,28 +173,27 @@ Page({
     user.set("cityid", -1);
     user.save().then(res => {
       // success
+      var openid = wx.getStorageSync("ifx_baas_openid");
+      wx.setStorageSync("openid", openid);
       wx.showToast({
         title: '登录成功',
         icon: 'succes',
         duration: 1000,
         mask: true
-      })
-      var openid = wx.getStorageSync("ifx_baas_openid");
-      wx.setStorageSync("openid", openid)
+      });
       wx.redirectTo({
         url: '/pages/index/index'
-      })
+      });
     }, err => {
       // err
-      // console.log("err")
       // 实例化查询对象
       var query = new wx.BaaS.Query();
       // 设置查询条件（比较、字符串包含、组合等）
       query.compare('openid', '=', wx.getStorageSync("openid"));
       // 应用查询对象
-      var userquery = new wx.BaaS.TableObject(that.data.tableID)
+      var userquery = new wx.BaaS.TableObject(that.data.usertableID)
       userquery.setQuery(query).find().then((res) => {
-        // console.log(res)
+        // console.log("13")
         // success
         if (res.data.objects.length != 0) {
           wx.showToast({
@@ -198,10 +201,10 @@ Page({
             icon: 'succes',
             duration: 1000,
             mask: true
-          })
-          wx.switchTab({
+          });
+          wx.redirectTo({
             url: '/pages/index/index'
-          })
+          });
         } else {
           // wx.showToast({
           //   title: '请重新登录',

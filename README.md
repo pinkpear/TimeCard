@@ -25,8 +25,8 @@ TimeCard微信小程序是一个基于微信开发工具所编写的一款小程
 ### 已完成功能及还需完成功能  
 - [x] 用户登录注册
 - [x] 倒计日模块中创建、保存分享及删除
-- [ ] 倒计日修改
-- [ ] 目标日模块
+- [x] 倒计日修改
+- [x] 目标日模块
 
 ## 项目运行效果图  
 1. 小程序登录界面  
@@ -64,11 +64,9 @@ TimeCard微信小程序是一个基于微信开发工具所编写的一款小程
 
 2. 进入项目确保项目文件中`project.config.json`中的`appid`为自己的appid。并在`app.js`文件中的`clientID`填入自己的知晓云clientID。
 
-4. 在`app.js`文件中填入创建的`timecard表ID`。与`AD表ID`。  
+3. 在`app.js`文件中填入创建的`timecard表ID`、与`AD表ID`、`userinfo表ID`。  
 
-3. 在`pages/register/register.js`文件中的data填入自己在知晓云创建的`userinfo表ID`。  
-
-5. 运行即可
+4. 运行即可
 
 ## 捐赠  
 

@@ -1,28 +1,56 @@
 <template name="cardstemplate">
-    <view class='preview'  catchtap='ondetail' data-cardid='{{id}}'>
-      <view class='card' style='background-color:#{{color}}'>
-        <view class='title-container'>
-          <text class='title'>{{title}}</text>
-          <view class='detail'>
-            <text>查看详情</text>
-          </view>
+  <!--倒计日  -->
+  <view class='preview' catchtap='ondetail' data-cardid='{{id}}' wx:if="{{cardstype == 'countback'}}">
+    <view class='card' style='background-color:#{{color}}'>
+      <view class='title-container'>
+        <text class='title'>{{title}}</text>
+        <view class='detail'>
+          <text>查看详情</text>
         </view>
-        <view class='lable'>
-          <text>倒计日</text>
+      </view>
+      <view class='lable'>
+        <text>倒计日</text>
+      </view>
+      <view class='period'>
+        <text>{{completed + '/' + scope}}</text>
+        <text>剩余天数</text>
+      </view>
+      <view class='progress-days'>
+        <view class='progress'>
+          <progress percent="{{percent}}" stroke-width='3' activeColor="#FFFFFF" backgroundColor="#AAAAAA" active="true" />
+          <text>目标日：{{enddate}}</text>
         </view>
-        <view class='period'>
-          <text>{{completed + '/' + scope}}</text>
-          <text>剩余天数</text>
-        </view>
-        <view class='progress-days'>
-          <view class='progress'>
-            <progress percent="{{percent}}" stroke-width='3' activeColor="#FFFFFF" backgroundColor="#AAAAAA" active="true" />
-            <text>目标日：{{enddate}}</text>
-          </view>
-          <view class='days'>
-            <text>{{surplus}}</text>
-          </view>
+        <view class='days'>
+          <text>{{surplus}}</text>
         </view>
       </view>
     </view>
+  </view>
+
+  <!--累计日  -->
+  <view class='preview' catchtap='ondetail' data-cardid='{{id}}' wx:else>
+    <view class='card' style='background-color:#{{color}}'>
+      <view class='title-container'>
+        <text class='title'>{{title}}</text>
+        <view class='detail'>
+          <text>查看详情</text>
+        </view>
+      </view>
+      <view class='lable'>
+        <text>累计日</text>
+      </view>
+      <view class='period-count'>
+        <text class='countdays'>累计天数</text>
+      </view>
+      <view class='start-days'>
+        <view class='start-date'>
+          <text class='start'>起始日：{{startdate}}</text>
+        </view>
+        <view class='days'>
+          <text>{{completed}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
 </template>

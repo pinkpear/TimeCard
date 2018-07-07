@@ -52,15 +52,15 @@ page {
   background-color: #fff;
   font-size: 45rpx;
   height: 240rpx;
-  
-  
 }
 .AD{
   text-align: center;
   width: 100%;
   margin: auto 0;
 }
-
+.audio-block{
+  margin: auto 0;
+}
 .comm {
   height: 220rpx;
   padding: 10rpx 8rpx;
@@ -148,6 +148,33 @@ page {
   font-weight: bolder;
   line-height: 60rpx;
 }
+
+
+
+/*累计日  */
+.period-count{
+  font-size: 25rpx;
+  color: #DDD;
+}
+.period-count .countdays{
+  float: right;
+}
+.start-days{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  height: 60rpx;
+}
+.start-date{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  font-size: 30rpx;
+  color: #DDD;
+  line-height: 60rpx;
+}
+
+
 .detail{
   border: 2rpx solid #fff;
   border-radius: 30rpx;

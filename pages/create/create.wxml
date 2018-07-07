@@ -17,7 +17,7 @@
       </picker>
     </view>
     <!--目标日期  -->
-    <view class="section">
+    <view class="section" wx:if="{{cardstype == 'countback'}}">
       <view class="section__title">
         <image class='calendar' src='/images/icon/calendar.png' mode='aspectFit'></image>
         <text class='start-date-title'>目标日期</text>
@@ -31,7 +31,7 @@
     <!--备注  -->
     <view class='section-comm'>
       <!-- <textarea class='comm' placeholder='备注' name="textarea"></textarea> -->
-      <text class='AD'>{{ADshow}}</text>
+       <text class='AD'>{{ADshow}}</text> 
     </view>
     <!--颜色选择  -->
     <view class='color-pick'>
@@ -46,8 +46,8 @@
       <image class='{{color=="434758"?"colorpointselected":"colorpoint"}}' data-color='434758' catchtap='changecolor' src='/images/colorpoint/434758.png' mode='aspectFit'></image>
     </view>
 
-    <!--预览  -->
-    <view class='preview'>
+    <!--倒计日预览  -->
+    <view class='preview' wx:if="{{cardstype == 'countback'}}">
       <text class='preview-title'>效果预览</text>
       <view class='card' style='background-color:#{{color}}'>
         <view class='title-container'>
@@ -74,9 +74,38 @@
         </view>
       </view>
     </view>
+
+
+    <!--累计日预览  -->
+    <view class='preview' wx:else>
+      <text class='preview-title'>效果预览</text>
+      <view class='card' style='background-color:#{{color}}'>
+        <view class='title-container'>
+          <text class='title'>{{title}}</text>
+          <view class='detail' catchtap='alert'>
+            <text>查看详情</text>
+          </view>
+        </view>
+        <view class='lable'>
+          <text>累计日</text>
+        </view>
+        <view class='period-count'>
+          <text class='countdays'>累计天数</text>
+        </view>
+        <view class='start-days'>
+          <view class='start-date'>
+            <text class='start'>起始日：{{startdate}}</text>
+          </view>
+          <view class='days'>
+            <text>{{complete}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+
     <!--保存按钮  -->
     <view class="btn-area">
-      <button formType="submit" class='submit'>保存</button>
+      <button formType="submit" class='submit' data-cardstype='{{cardstype}}'>保存</button>
     </view>
   </form>
 </view>
