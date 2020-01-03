@@ -3,6 +3,9 @@
 # 项目介绍
 **TimeCard**——一个基于微信开发工具所编写的一款小程序，它是一个关于效率的小程序，主要提供倒计日和目标日（待完成）的功能。该项目正在持续开发中（2019年12月31日重新启动），目前版本更新为`v0.1.1`。（<a href='https://github.com/pinkpear/TimeCard/'>项目地址</a>）
 
+## CSDN
+<a href='https://blog.csdn.net/nullp/article/details/103788292'>TimeCard</a>
+
 # 新的改变
 
 我对**时光车站**项目进行了一些界面上的优化与数据存储结构和存储位置调整：
