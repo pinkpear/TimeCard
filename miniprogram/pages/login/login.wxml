@@ -1,0 +1,10 @@
+<!--pages/login/login.wxml-->
+<view class='container' style='height:{{screenHeight}}px;width:{{screenWidth}}px'>
+  <view class='logo' style='width:{{screenWidth}}px;'>
+    <text>时光车站</text>
+  </view>
+  <view class='login-btn-container' style='width:{{screenWidth}}px;'>
+    <button class='login-btn' style='width:{{screenWidth-40}}px;' type="primary" loading="{{loading}}" plain="{{plain}}" disabled="{{loginStatus == 2?'disabled':''}}" open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="onGotUserInfo"> {{loginStatus == 2?"正在登录":"微信登录"}} </button>
+  </view>
+
+</view>

@@ -1,0 +1,141 @@
+.container {
+  padding: 0 24rpx;
+}
+
+.title-groups {
+  font-size: 32rpx;
+  font-family: "pingfang";
+  font-weight: bolder;
+  color: #20bfe9;
+}
+
+.section {
+  margin: 20rpx auto;
+  /* 里面是input必须加上display与flex-direction */
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background-color: #fff;
+  font-size: 35rpx;
+  height: 76rpx;
+  border-radius: 60rpx;
+  width: 84%;
+  padding: 0 32rpx;
+}
+
+.section input {
+  margin: auto 0;
+  width: 100%;
+  color: #505050;
+}
+
+.section__title {
+  display: flex;
+  flex-direction: row;
+  color: #666;
+}
+
+.calendar {
+  width: 50rpx;
+  height: 50rpx;
+  margin: auto 0;
+}
+
+.picker {
+  line-height: 76rpx;
+  color: #505050;
+}
+
+.color-pick {
+  margin: 15rpx auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background-color: #fff;
+  height: 76rpx;
+  width: 93%;
+  border-radius: 60rpx;
+}
+
+.colorpoint {
+  width: 60rpx;
+  height: 60rpx;
+  border-radius: 50rpx;
+  margin: auto 0;
+}
+
+.colorpointselected {
+  width: 60rpx;
+  height: 60rpx;
+  border-radius: 50rpx;
+  margin: auto 0;
+  -webkit-box-shadow: 0px 0px 26rpx #333;
+}
+
+/* 角色选择 */
+
+.role-pick {
+  margin: 15rpx auto;
+  background-color: #fff;
+  width: 93%;
+  border-radius: 28rpx;
+}
+
+.role_scroll_x_box {
+  width: 100%;
+  height: 130rpx;
+  white-space: nowrap;
+  display: block;
+}
+
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  color: transparent;
+}
+
+.role-items {
+  display: inline-flex;
+  flex-direction: column;
+  width: 104rpx;
+  height: 120rpx;
+  margin: auto 15rpx;
+}
+.role-items-selected {
+  display: inline-flex;
+  flex-direction: column;
+  width: 104rpx;
+  height: 120rpx;
+  margin: auto 15rpx;
+  border-bottom: 1rpx solid #333;
+}
+
+.role-items image {
+  width: 80rpx;
+  margin: auto;
+}
+
+.role-items-title {
+  font-size: 22rpx;
+  color: #505050;
+  text-align: center;
+  height: 35rpx;
+  line-height: 20rpx;
+  font-weight: lighter;
+}
+
+/* 保存按钮 */
+
+.submit {
+  margin-top: 25rpx;
+  background-color: #1968fc;
+  left: 268rpx;
+  border-radius: 50rpx;
+  width: 145rpx;
+  height: 70rpx;
+  line-height: 70rpx;
+  font-size: 35rpx;
+  font-weight: bolder;
+  Letter-spacing: 5rpx;
+  color: #fbfbfb;
+}

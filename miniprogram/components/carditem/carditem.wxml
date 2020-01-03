@@ -1,0 +1,43 @@
+<!-- 单张卡片 -->
+<view class='card-items' style="background-color: {{cardColor}};">
+  <!-- 事件标题及操作 -->
+  <view class='card-title-createtime-handle'>
+    <view class='card-title-createtime'>
+      <view class='card-title'>{{cardTitle}}</view>
+      <view class='card-createtime'>起始日：{{startTime}}</view>
+    </view>
+    <!-- 事件操作 -->
+    <view class='card-handle'>
+      <image mode='widthFix' src='../../assert/more-default.svg' animation="{{aniRotateA}}" bindtap="rotate90"></image>
+    </view>
+  </view>
+  <!-- 用户所选人物及进度条 -->
+  <view class='card-role-progress' hidden="{{finished}}">
+    <!-- 人物 -->
+    <view class='card-role'>
+      <image mode='widthFix' src='../../images/role/{{roleName}}.svg' style='left:{{percent}}%;'></image>
+    </view>
+
+    <!-- 进度条 -->
+    <view class='progress-con'>
+      <view class='progress' style='width:{{percent}}%;'></view>
+      <view class='progress-bott'></view>
+    </view>
+  </view>
+  <!-- 倒计日结束，显示已结束 -->
+  <view class="finished" hidden="{{!finished}}">
+    已结束
+  </view>
+  <view class='card-endtime'>截止日：{{endTime}}</view>
+  <!-- 事件标签 下次更新-->
+  <view class='card-tag'>
+    <!-- <view class='tag-item'>大学</view>
+    <view class='tag-item'>学习</view> -->
+    <block wx:if="{{cardtype == countback}}">
+      <view class='tag-item'>倒计日</view>
+    </block>
+    <block wx:elif="{{cardtype == accumulation}}">
+      <view class='tag-item'>累计日</view>
+    </block>
+  </view>
+</view>

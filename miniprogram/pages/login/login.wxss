@@ -1,0 +1,26 @@
+/* pages/login/login.wxss */
+
+.container {
+  position: relative;
+  margin: 0;
+}
+
+.logo {
+  position: absolute;
+  top: 24%;
+  font-size: 80rpx;
+  text-indent : 30rpx;
+  letter-spacing: 30rpx;
+  font-weight: lighter;
+  text-align: center;
+  
+}
+
+.login-btn-container {
+  position: absolute;
+  bottom: 100rpx;
+}
+
+.login-btn {
+  margin: 0 auto;
+}

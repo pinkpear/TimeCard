@@ -1,0 +1,86 @@
+<!-- 标题栏 -->
+<!-- 引用component组件 -->
+<navbar id="navComp" navHandleImg='../../assert/goback.svg' navTitleText='倒计日' method='goback' backgroundColor='#FFFBF3'></navbar>
+
+<!--pages/creat/creat.wxml-->
+<view class='container'>
+  <form bindsubmit="formSubmit">
+    <view class='title-groups'>卡片标题</view>
+    <view class="section">
+      <input class='input' name="input" placeholder="请输入标题（10个汉字以内）..." bindinput="bindKeyInput" />
+    </view>
+
+    <!--起始日期  -->
+    <view class='title-groups'>起始日期</view>
+    <view class="section">
+      <view class="section__title">
+        <image class='calendar' src='/assert/calendar.svg' mode='aspectFit'></image>
+      </view>
+      <picker mode="date" value="{{startdate}}" bindchange="bindDateStart" end="{{nowdate}}">
+        <view class="picker">
+          {{startdate}}
+        </view>
+      </picker>
+    </view>
+
+    <!--目标日期  -->
+    <view class='title-groups'>目标日期</view>
+    <view class="section">
+      <view class="section__title">
+        <image class='calendar' src='/assert/calendar.svg' mode='aspectFit'></image>
+      </view>
+      <picker mode="date" value="{{enddate}}" bindchange="bindDateEnd" start="{{nowdate}}">
+        <view class="picker">
+          {{enddate}}
+        </view>
+      </picker>
+    </view>
+
+    <!--颜色选择  -->
+    <view class='title-groups'>卡片颜色</view>
+    <view class='color-pick'>
+      <view class='{{color=="#e63c56"?"colorpointselected":"colorpoint"}}' data-color='#e63c56' style='background-color: #e63c56;' catchtap='changecolor'></view>
+      <view class='{{color=="#fc6180"?"colorpointselected":"colorpoint"}}' data-color='#fc6180' catchtap='changecolor' style='background-color: #fc6180;'></view>
+      <view class='{{color=="#f797a1"?"colorpointselected":"colorpoint"}}' data-color='#f797a1' catchtap='changecolor' style='background-color: #f797a1;'></view>
+      <view class='{{color=="#126cfe"?"colorpointselected":"colorpoint"}}' data-color='#126cfe' catchtap='changecolor' style='background-color: #126cfe;'></view>
+      <view class='{{color=="#4090f1"?"colorpointselected":"colorpoint"}}' data-color='#4090f1' catchtap='changecolor' style='background-color: #4090f1;'></view>
+      <view class='{{color=="#ff992b"?"colorpointselected":"colorpoint"}}' data-color='#ff992b' catchtap='changecolor' style='background-color: #ff992b;'></view>
+      <view class='{{color=="#ffb502"?"colorpointselected":"colorpoint"}}' data-color='#ffb502' catchtap='changecolor' style='background-color: #ffb502;'></view>
+      <view class='{{color=="#434758"?"colorpointselected":"colorpoint"}}' data-color='#434758' catchtap='changecolor' style='background-color: #434758;'></view>
+    </view>
+
+    <!-- 角色选择 -->
+    <view class='title-groups'>角色选择</view>
+    <view class='role-pick'>
+      <!-- 可以横向滚动 -->
+      <scroll-view class="role_scroll_x_box" scroll-x="true">
+        <block wx:for="{{roleGroups}}" wx:for-index="idx" wx:for-item="itemName">
+          <!-- 单独的一套，图片加名称 -->
+          <view class='role-items' data-rolename='{{idx}}' catchtap='changerole'>
+            <image mode="widthFix" src='../../images/role/{{idx}}.svg'></image>
+            <view class='role-items-title'>
+              {{itemName.roleName}}
+            </view>
+          </view>
+        </block>
+      </scroll-view>
+    </view>
+
+    <!-- 标签选择 -->
+    <!-- <view class='title-groups'>标签选择</view> -->
+    <!-- 没有想好标签选择的实现方式，后续添加 -->
+
+    <!-- 预览 -->
+    <view class='title-groups'>卡片预览</view>
+    <view class='preview'>
+      <carditem id="cardPreview" cardTitle="{{title}}" roleName="{{roleName}}" startTime="{{startdate}}" endTime="{{enddate}}" cardColor="{{color}}" percent="{{percent}}"></carditem>
+    </view>
+
+
+
+    <!-- 保存按钮  -->
+    <view class="btn-area">
+      <button formType="submit" class='submit' data-cardstype='{{cardstype}}'>保存</button>
+    </view>
+  </form>
+</view>

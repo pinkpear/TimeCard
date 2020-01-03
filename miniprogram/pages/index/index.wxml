@@ -1,0 +1,30 @@
+<!-- 标题栏 -->
+<!-- 引用component组件 -->
+<navbar id="navComp" navHandleImg='../../assert/add.svg' navTitleText='' method='createButtonHandle' backgroundColor='#FFFBF3' bind:updataAddPopup="switchAddPopup"></navbar>
+
+<view class='container'>
+
+  <block wx:for="{{cardsPed}}" wx:for-item="card" wx:key="{{_id}}">
+    <!-- 单张卡片 -->
+    <carditem  cardTitle="{{card.cardtitle}}" cardColor="{{card.cardcolor}}" startTime="{{card.cardstarttime}}" roleName="{{card.cardrolename}}" endTime="{{card.cardendtime}}" percent="{{card.percent}}" finished="{{card.finished}}"></carditem>
+  </block>
+</view>
+
+<!-- 弹出新建菜单 -->
+<view class="show-popup" hidden="{{hideAddPopup}}">
+  <!-- 遮罩层 -->
+  <view class="popup-mask" animation="{{aniMaskA}}"></view>
+  <view class="popup-contents" animation="{{aniPopupA}}">
+    <view class='popup-cancel'>
+      <text class='txt' catchtap='closeAddPopup'>取消</text>
+    </view>
+    <view class='popup-title'>
+      <text>选择创建卡片类型</text>
+    </view>
+    <view class='button-container'>
+      <!--根据类型不同跳转时选择不同类型  -->
+      <image class='button-img' mode='aspectFit' src='/images/button/count.png' catchtap='oncreate' data-type='count'></image>
+      <image class='button-img' mode='aspectFit' src='/images/button/countback.png' catchtap='oncreate' data-type='countback'></image>
+    </view>
+  </view>
+</view>
